@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jordanschillereff <jordanschillereff@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 17:33:40 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/12 20:24:34 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/13 14:07:16 by jordanschil      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ void	*ft_calloc(size_t count, size_t size);
 
 char	*ft_strdup(const char *s1);
 
-char **ft_split(const char *str, char c);
+char	**ft_split(const char *str, char c);
 
 #endif

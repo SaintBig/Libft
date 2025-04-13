@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jordanschillereff <jordanschillereff@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 17:25:31 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/12 20:32:19 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/13 14:07:50 by jordanschil      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	count_words(const char *s, char c)
 	return (wrds);
 }
 
-static void *ft_free(char **strs, int count)
+static void	*ft_free(char **strs, int count)
 {
 	int i;
 
@@ -64,49 +64,54 @@ static char	*make_word(char *str, char c)
 	char	*ptr;
 	int		len;
 
-	while (*str == c)
-		str++;
-	printf("%s\n", str);
 	len = ft_wrdlen(str, c);
 	if (len == 0)
 		return (NULL);
 	ptr = (char *)ft_calloc(len + 1, sizeof(char));
 	if (!ptr)
 		return (NULL);
-	printf("made it past NULL in make _word\n");
 	ft_memcpy(ptr, str, len);
 	return (ptr);
 }
 
-char **ft_split(const char *str, char c)
+char	**ft_split(const char *str, char c)
 {
 	char			**ptrs;
 	unsigned int	i;
+	unsigned int	j;
 	unsigned int	wrds;
 
 	wrds = count_words(str, c);
 	ptrs = (char **)ft_calloc((wrds + 1), sizeof(char *));
 	if (!ptrs)
 		return (NULL);
-	printf("past callocc");
-	while (i < wrds && *str)
+	i = 0;
+	j = 0;
+	while (i < wrds && str[j])
 	{
-		ptrs[i] = make_word((char *)str, c);
+		while(str[j] == c)
+			j++;
+		ptrs[i] = make_word((char *)&str[j], c);
 		if (!ptrs[i])
 			return (ft_free(ptrs, wrds));
-		printf("%s\n", ptrs[i]);
-		while (*str && *str != c)
-			str++;
+		while (str[j] && str[j] != c)
+			j++;
 		i++;
 	}
 	return (ptrs);
 }
 
-int main(void)
+/* int main(void)
 {
-	char str[] = "   hello   world good bye  ";
+	char str[] = "hello   wor ld good bye  ";
 	char **wrds;
+	int i = 0;
 
 	wrds = ft_split(str, ' ');
-	printf("%s %s\n", wrds[0], wrds[3]);
-}
+	while (wrds[i])
+	{
+		printf("%s\n", wrds[i]);
+		i++;
+	}
+	ft_free(wrds, i);
+} */
