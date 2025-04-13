@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jordanschillereff <jordanschillereff@st    +#+  +:+       +#+        */
+/*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 17:25:31 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/13 14:07:50 by jordanschil      ###   ########.fr       */
+/*   Updated: 2025/04/13 20:49:04 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	count_words(const char *s, char c)
 
 static void	*ft_free(char **strs, int count)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < count)
@@ -89,7 +89,7 @@ char	**ft_split(const char *str, char c)
 	j = 0;
 	while (i < wrds && str[j])
 	{
-		while(str[j] == c)
+		while (str[j] == c)
 			j++;
 		ptrs[i] = make_word((char *)&str[j], c);
 		if (!ptrs[i])

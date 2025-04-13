@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jordanschillereff <jordanschillereff@st    +#+  +:+       +#+        */
+/*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 17:33:40 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/13 14:07:16 by jordanschil      ###   ########.fr       */
+/*   Updated: 2025/04/13 20:49:23 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,27 @@ void	*ft_calloc(size_t count, size_t size);
 
 char	*ft_strdup(const char *s1);
 
+// Additional functions
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+
+char	*ft_strjoin(const char *s1, const char *s2);
+
+char	*ft_strtrim(const char *s1, const char *set);
+
 char	**ft_split(const char *str, char c);
+
+char	*ft_itoa(int n);
+
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+
+void	ft_putchar_fd(char c, int fd);
+
+void	ft_putstr_fd(char *s, int fd);
+
+void	ft_putendl_fd(char *s, int fd);
+
+void	ft_putnbr_fd(int n, int fd);
 
 #endif
