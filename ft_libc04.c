@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 18:43:55 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/13 21:54:11 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/14 10:55:24 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,20 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 // Locate substring in a string 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int	needlelen;
+	size_t	needlelen;
 
-	if (!needle)
+	if (!*needle)
 		return ((char *)haystack);
 	needlelen = ft_strlen(needle);
-	while (*haystack && len-- > 0)
+	while (*haystack && len >= needlelen)
 	{
-		if (*haystack == *needle)
-			if (!ft_strncmp(haystack, needle, needlelen))
-				return ((char *)haystack);
+		if (*haystack == *needle
+			&& !ft_strncmp(haystack, needle, needlelen))
+		{
+			return ((char *)haystack);
+		}
 		haystack++;
+		len--;
 	}
 	return (NULL);
 }

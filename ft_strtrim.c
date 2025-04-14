@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 17:25:56 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/12 17:37:11 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/14 11:13:24 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 static int	set_cmp(const char c, const char *set)
 {
+	if (!set)
+		return(0);
+	
 	while (*set)
 	{
 		if (c == *set)
@@ -28,7 +31,7 @@ static char	*make_trim(const char *s, size_t start, size_t len)
 {
 	char	*new;
 
-	if (len <= 0 || start >= ft_strlen(s))
+	if (!s || len <= 0 || start >= ft_strlen(s))
 		return (ft_strdup(""));
 	new = (char *)ft_calloc(len + 1, sizeof(char));
 	if (!new)
@@ -42,13 +45,16 @@ char	*ft_strtrim(const char *s1, const char *set)
 	int	i;
 	int	j;
 
+	if (!s1 || !set)
+		return (NULL);
 	i = 0;
-	if (ft_strlen(s1) == 0)
+	size_t len = ft_strlen(s1);
+	if (len == 0)
 		return (ft_strdup(""));
-	j = ft_strlen(s1) - 1;
+	j = len - 1;
 	while (set_cmp(s1[i], set))
 		i++;
-	while (set_cmp(s1[j], set))
+	while (j >= 0 && set_cmp(s1[j], set))
 		j--;
 	return (make_trim(s1, i, j - (i - 1)));
 }

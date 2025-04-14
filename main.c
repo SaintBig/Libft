@@ -3,6 +3,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 // Colors for printf
 #define RED     "\033[1;31m"
@@ -53,6 +55,18 @@ void test_ft_isprint(void) {
         if ((ft_isprint(c) != 0) != (isprint(c) != 0)) {
             printf(RED "FAIL: ft_isprint(%d) = %d, expected %s\n" RESET, 
                    c, ft_isprint(c), (isprint(c) ? "non-zero" : "zero"));
+            return;
+        }
+    }
+    printf(GREEN "ft_isprint: OK!\n" RESET);
+}
+
+void test_ft_isascii(void) {
+    printf(YELLOW "\nTESTING ft_isascii()\n" RESET);
+    for (int c = -1; c <= 255; c++) {
+        if ((ft_isascii(c) != 0) != (isascii(c) != 0)) {
+            printf(RED "FAIL: ft_isascii(%d) = %d, expected %s\n" RESET, 
+                   c, ft_isascii(c), (isascii(c) ? "non-zero" : "zero"));
             return;
         }
     }
@@ -405,6 +419,51 @@ void test_ft_strjoin(void) {
     printf(GREEN "ft_strjoin: OK!\n" RESET);
 }
 
+void test_ft_strtrim(void)
+{
+    printf(YELLOW "\nTESTING ft_strtrim():\n" RESET);
+
+    // Test cases: {input, set, expected}
+    const char *test_cases[][3] = {
+        {"  hello  ", " ", "hello"},
+        {"xxhello!xx", "x", "hello!"},
+        {"abcHello, World!zyx", "abcxyz", "Hello, World!"},
+        {"", "123", ""},
+        {"hello", "", "hello"},
+        {"xyz", "xyz", ""},
+        {"   ", " ", ""},
+        {"no_trim_needed", "123", "no_trim_needed"},
+        {NULL, " ", NULL}  // NULL input (optional)
+    };
+
+    int passed = 0;
+    int total = sizeof(test_cases) / sizeof(test_cases[0]);
+
+    for (int i = 0; i < total; i++)
+    {
+        const char *s1 = test_cases[i][0];
+        const char *set = test_cases[i][1];
+        const char *expected = test_cases[i][2];
+        char *result = ft_strtrim(s1, set);
+
+        printf("Test %d: ft_strtrim(\"%s\", \"%s\") -> ", i + 1, s1 ? s1 : "NULL", set ? set : "NULL");
+        
+        if ((!result && !expected) || (result && expected && strcmp(result, expected) == 0))
+        {
+            printf(GREEN "PASS: \"%s\"\n" RESET, result ? result : "NULL");
+            passed++;
+        }
+        else
+        {
+            printf(RED "FAIL: got \"%s\", expected \"%s\"\n" RESET, result ? result : "NULL", expected ? expected : "NULL");
+        }
+
+        free(result); // Safe even if result is NULL
+    }
+
+    printf("Summary: %d/%d " GREEN "PASSED" RESET "\n", passed, total);
+}
+
 void test_ft_split(void) {
     printf(YELLOW "\nTESTING ft_split()\n" RESET);
     char *str = "Hello,World,42";
@@ -420,7 +479,206 @@ void test_ft_split(void) {
     printf(GREEN "ft_split: OK!\n" RESET);
 }
 
-/* void test_ft_lstnew(void) {
+void test_ft_itoa(void)
+{
+    printf(YELLOW "\nTESTING ft_itoa():\n" RESET);
+
+    struct {
+        int input;
+        const char *expected;
+    } test_cases[] = {
+        {0, "0"},
+        {123, "123"},
+        {-456, "-456"},
+        {2147483647, "2147483647"},  // INT_MAX
+        {-2147483648, "-2147483648"}, // INT_MIN
+        {42, "42"},
+        {-99, "-99"}
+    };
+
+    int passed = 0;
+    int total = sizeof(test_cases) / sizeof(test_cases[0]);
+
+    for (int i = 0; i < total; i++)
+    {
+        char *result = ft_itoa(test_cases[i].input);
+        printf("Test %d: ft_itoa(%d) -> ", i + 1, test_cases[i].input);
+        
+        if (result && strcmp(result, test_cases[i].expected) == 0)
+        {
+            printf(GREEN "PASS: \"%s\"\n" RESET, result);
+            passed++;
+        }
+        else
+        {
+            printf(RED "FAIL: got \"%s\", expected \"%s\"\n" RESET, result ? result : "NULL", test_cases[i].expected);
+        }
+
+        free(result); // Free allocated memory
+    }
+
+    printf("Summary: %d/%d " GREEN "PASSED" RESET "\n", passed, total);
+}
+
+// Helper function for testing ft_strmapi
+static char map_func(unsigned int i, char c) {
+    return (c + i); // Example: increment each char by its index
+}
+
+void test_ft_strmapi(void)
+{
+    printf(YELLOW "\nTESTING ft_strmapi():\n" RESET);
+
+    struct {
+        const char *input;
+        const char *expected;
+    } test_cases[] = {
+        {"abc", "ace"},  // 'a'+0, 'b'+1, 'c'+2
+        {"123", "135"},  // '1'+0, '2'+1, '3'+2
+        {"", ""},        // Empty string
+        {"x", "x"},      // Single char
+        {"XYZ", "XZ\\"}, // 'X'+0, 'Y'+1, 'Z'+2 (ASCII 90+2=92 → '\')
+    };
+
+    int passed = 0;
+    int total = sizeof(test_cases) / sizeof(test_cases[0]);
+
+    for (int i = 0; i < total; i++)
+    {
+        char *result = ft_strmapi(test_cases[i].input, map_func);
+        printf("Test %d: ft_strmapi(\"%s\") -> ", i + 1, test_cases[i].input);
+        
+        if (result && strcmp(result, test_cases[i].expected) == 0)
+        {
+            printf(GREEN "PASS: \"%s\"\n" RESET, result);
+            passed++;
+        }
+        else
+        {
+            printf(RED "FAIL: got \"%s\", expected \"%s\"\n" RESET, result ? result : "NULL", test_cases[i].expected);
+        }
+
+        free(result); // Free allocated memory
+    }
+
+    printf("Summary: %d/%d " GREEN "PASSED" RESET "\n", passed, total);
+}
+
+// Helper function for testing ft_striteri
+static void iter_func(unsigned int i, char *c) {
+    *c = *c + i; // Modify the char in place (same logic as map_func)
+}
+
+void test_ft_striteri(void)
+{
+    printf(YELLOW "\nTESTING ft_striteri():\n" RESET);
+
+    struct {
+        char input[32];
+        const char *expected;
+    } test_cases[] = {
+        {"abc", "ace"},  // 'a'+0, 'b'+1, 'c'+2
+        {"123", "135"},  // '1'+0, '2'+1, '3'+2
+        {"", ""},        // Empty string
+        {"x", "x"},      // Single char (unchanged)
+        {"XYZ", "XZ\\"}, // 'X'+0, 'Y'+1, 'Z'+2 (ASCII 90+2=92 → '\')
+    };
+
+    int passed = 0;
+    int total = sizeof(test_cases) / sizeof(test_cases[0]);
+
+    for (int i = 0; i < total; i++)
+    {
+        char buffer[32];
+        strcpy(buffer, test_cases[i].input); // Copy input to mutable buffer
+        ft_striteri(buffer, iter_func);
+        printf("Test %d: ft_striteri(\"%s\") -> ", i + 1, test_cases[i].input);
+        
+        if (strcmp(buffer, test_cases[i].expected) == 0)
+        {
+            printf(GREEN "PASS: \"%s\"\n" RESET, buffer);
+            passed++;
+        }
+        else
+        {
+            printf(RED "FAIL: got \"%s\", expected \"%s\"\n" RESET, buffer, test_cases[i].expected);
+        }
+    }
+
+    printf("Summary: %d/%d " GREEN "PASSED" RESET "\n", passed, total);
+}
+
+void test_ft_putchar_fd(void) {
+    printf(YELLOW "\nTESTING ft_putchar_fd():" RESET);
+    printf(BLUE "\n" RESET);
+
+    ft_putchar_fd('a', 1);
+    printf(BLUE "\n" RESET);
+    ft_putchar_fd('1', 2);
+
+    printf("\n");
+}
+
+void test_ft_putstr_fd(void) {
+    printf(YELLOW "\nTESTING ft_putstr_fd():" RESET);
+    printf(BLUE "\n" RESET);
+    
+    ft_putstr_fd("Hello World!", 1);
+    printf(BLUE "\n" RESET);
+    ft_putstr_fd("Hello World!", 2);
+
+    printf("\n");
+}
+
+void test_ft_putendl_fd(void) {
+    printf(YELLOW "\nTESTING ft_putendl_fd():" RESET);
+    printf(BLUE "\n" RESET);
+    
+    ft_putendl_fd("Hello World!", 1);
+    printf(BLUE "" RESET);
+    ft_putendl_fd("Hello World!", 2);
+
+    printf("\n");
+}
+
+void test_ft_putnbr_fd(void) {
+    printf(YELLOW "\nTESTING ft_putnbr_fd():" RESET);
+    printf(BLUE "\n" RESET);
+    
+    ft_putnbr_fd(1234, 1);
+    printf(BLUE "\n" RESET);
+    ft_putnbr_fd(4321, 2);
+
+    printf("\n");
+}
+
+t_list *create_node(int value) {
+    t_list *new = malloc(sizeof(t_list));
+    if (!new) return NULL;
+    new->content = (void*)(long)value;
+    new->next = NULL;
+    return new;
+}
+
+void print_list(t_list *lst) {
+    printf(BLUE "[");
+    while (lst) {
+        printf("%d", (int)(long)lst->content);
+        if (lst->next) printf("->");
+        lst = lst->next;
+    }
+    printf("]\n" RESET);
+}
+
+void free_list(t_list *lst) {
+    while (lst) {
+        t_list *tmp = lst;
+        lst = lst->next;
+        free(tmp);
+    }
+}
+
+void test_ft_lstnew(void) {
     printf(YELLOW "\nTESTING ft_lstnew()\n" RESET);
     int content = 42;
     t_list *node = ft_lstnew(&content);
@@ -431,7 +689,191 @@ void test_ft_split(void) {
     }
     free(node);
     printf(GREEN "ft_lstnew: OK!\n" RESET);
-} */
+}
+
+void test_ft_lstadd_front(void) {
+    printf(YELLOW "\n=== Testing ft_lstadd_front ===\n" RESET);
+    
+    t_list *list = NULL;
+    
+    // Test 1: Add to empty list
+    t_list *node1 = create_node(10);
+    ft_lstadd_front(&list, node1);
+    printf("After adding 10 to empty list: ");
+    print_list(list);  // Expected: [10]
+    
+    // Test 2: Add to existing list
+    t_list *node2 = create_node(20);
+    ft_lstadd_front(&list, node2);
+    printf("After adding 20 at front:      ");
+    print_list(list);  // Expected: [20 -> 10]
+    
+    free_list(list);
+}
+
+void test_ft_lstsize(void) {
+    printf(YELLOW "\n=== Testing ft_lstsize ===\n" RESET);
+    
+    t_list *list = NULL;
+    
+    // Test 1: Empty list
+    printf("Size of empty list: %d (Expected: 0)\n", ft_lstsize(list));
+    
+    // Test 2: 1-element list
+    list = create_node(10);
+    printf("Size after adding 10: %d (Expected: 1)\n", ft_lstsize(list));
+    
+    // Test 3: Multi-element list
+    t_list *node = create_node(20);
+    ft_lstadd_front(&list, node);
+    printf("Size after adding 20: %d (Expected: 2)\n", ft_lstsize(list));
+    
+    free_list(list);
+}
+
+void test_ft_lstlast(void) {
+    printf(YELLOW "\n=== Testing ft_lstlast ===\n" RESET);
+    
+    t_list *list = NULL;
+    
+    // Test 1: Empty list
+    printf("Last of empty list: %s (Expected: NULL)\n", 
+           ft_lstlast(list) ? "NOT NULL" : "NULL");
+    
+    // Test 2: 1-element list
+    list = create_node(10);
+    printf("Last of [10]: %d (Expected: 10)\n", 
+           (int)(long)ft_lstlast(list)->content);
+    
+    // Test 3: Multi-element list
+    t_list *node = create_node(20);
+    ft_lstadd_front(&list, node);
+    printf("Last of [20->10]: %d (Expected: 10)\n", 
+           (int)(long)ft_lstlast(list)->content);
+    
+    free_list(list);
+}
+
+void test_ft_lstadd_back(void) {
+    printf(YELLOW "\n=== Testing ft_lstadd_back ===\n" RESET);
+    
+    t_list *list = NULL;
+    
+    // Test 1: Add to empty list
+    t_list *node1 = create_node(10);
+    ft_lstadd_back(&list, node1);
+    printf("After adding 10 to empty list: ");
+    print_list(list);  // Expected: [10]
+    
+    // Test 2: Add to existing list
+    t_list *node2 = create_node(20);
+    ft_lstadd_back(&list, node2);
+    printf("After adding 20 at back:       ");
+    print_list(list);  // Expected: [10 -> 20]
+    
+    // Test 3: Add another node
+    t_list *node3 = create_node(30);
+    ft_lstadd_back(&list, node3);
+    printf("After adding 30 at back:       ");
+    print_list(list);  // Expected: [10 -> 20 -> 30]
+    
+    free_list(list);
+}
+
+// Sample content deletion function
+void del_content(void *content) {
+    printf("Deleting content: %d\n", (int)(long)content);
+    // If content was malloc'd: free(content);
+}
+
+// Sample content modification function
+void *map_content(void *content) {
+    int value = (int)(long)content;
+    return (void *)(long)(value * 10); // Multiply by 10 for testing
+}
+
+// Print content function for lstiter
+void print_content(void *content) {
+    printf("%d -> ", (int)(long)content);
+}
+
+void test_ft_lstdelone(void) {
+    printf(YELLOW "\n=== Testing ft_lstdelone ===\n" RESET);
+    
+    // Create and test single node deletion
+    t_list *node = create_node(42);
+    printf("Before deletion: ");
+    print_list(node);
+    
+    ft_lstdelone(node, del_content);
+    printf("After deletion (should see deletion message above)\n");
+    
+    // Note: Don't access 'node' after deletion!
+    printf("Test passed if you saw deletion message\n");
+}
+
+void test_ft_lstclear(void) {
+    printf(YELLOW "\n=== Testing ft_lstclear ===\n" RESET);
+    
+    // Create a 3-node list
+    t_list *list = create_node(1);
+    ft_lstadd_back(&list, create_node(2));
+    ft_lstadd_back(&list, create_node(3));
+    
+    printf("Before clear: ");
+    print_list(list);
+    
+    ft_lstclear(&list, del_content);
+    printf("After clear (should see 3 deletion messages above)\n");
+    
+    if (list == NULL) {
+        printf(GREEN "Success: List pointer is now NULL\n" RESET);
+    } else {
+        printf(RED "Error: List pointer not set to NULL\n" RESET);
+    }
+}
+
+void test_ft_lstiter(void) {
+    printf(YELLOW "\n=== Testing ft_lstiter ===\n" RESET);
+    
+    // Create a 3-node list
+    t_list *list = create_node(10);
+    ft_lstadd_back(&list, create_node(20));
+    ft_lstadd_back(&list, create_node(30));
+    
+    printf("Original list: ");
+    print_list(list);
+    
+    printf("Iterating with print: ");
+    ft_lstiter(list, print_content);
+    printf("NULL\n");
+    
+    // Expected output: "10 -> 20 -> 30 -> NULL"
+    
+    ft_lstclear(&list, del_content);
+}
+
+void test_ft_lstmap(void) {
+    printf(YELLOW "\n=== Testing ft_lstmap ===\n" RESET);
+    
+    // Create source list
+    t_list *src = create_node(1);
+    ft_lstadd_back(&src, create_node(2));
+    ft_lstadd_back(&src, create_node(3));
+    
+    printf("Source list: ");
+    print_list(src);
+    
+    // Map each value to value*10
+    t_list *new_list = ft_lstmap(src, map_content, del_content);
+    
+    printf("Mapped list (should be 10,20,30): ");
+    print_list(new_list);
+    
+    // Cleanup
+    ft_lstclear(&src, del_content);
+    ft_lstclear(&new_list, del_content);
+}
 
 int main(void) {
     printf(BLUE "\n=== LIBFT TESTER ===\n" RESET);
@@ -441,6 +883,7 @@ int main(void) {
 	test_ft_isdigit();
 	test_ft_isalnum();
 	test_ft_isprint();
+    test_ft_isascii();
     test_ft_strlen();
 	test_ft_memset();
 	test_ft_bzero();
@@ -461,10 +904,26 @@ int main(void) {
     // Part 2: Additional functions
     test_ft_substr();
     test_ft_strjoin();
+    test_ft_strtrim();
     test_ft_split();
+    test_ft_itoa();
+    test_ft_strmapi();
+    test_ft_striteri();
+    test_ft_putchar_fd();
+    test_ft_putstr_fd();
+    test_ft_putendl_fd();
+    test_ft_putnbr_fd();
 
     // Bonus: Linked List functions
-    //test_ft_lstnew();
+    test_ft_lstnew();
+    test_ft_lstadd_front();
+    test_ft_lstsize();
+    test_ft_lstlast();
+    test_ft_lstadd_back();
+    test_ft_lstdelone();
+    test_ft_lstclear();
+    test_ft_lstiter();
+    test_ft_lstmap();
 
     printf(BLUE "\n=== TESTS COMPLETE ===\n" RESET);
     return (0);
