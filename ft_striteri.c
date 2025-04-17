@@ -6,13 +6,13 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 20:12:01 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/13 20:49:55 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/17 16:41:29 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
-#include <stdio.h>
+
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {

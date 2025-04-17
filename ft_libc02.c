@@ -6,11 +6,10 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 18:34:58 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/12 18:39:53 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/17 16:38:36 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 size_t	ft_strlen(const char *str);

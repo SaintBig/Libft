@@ -6,12 +6,17 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 08:55:18 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/14 13:23:32 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/17 19:21:00 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
+
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+int		ft_lstsize(t_list *lst);
+t_list	*ft_lstlast(t_list *lst);
+void	ft_lstadd_back(t_list **lst, t_list *new);
 
 t_list	*ft_lstnew(void *content)
 {
@@ -43,17 +48,17 @@ int	ft_lstsize(t_list *lst)
 		tmp = tmp->next;
 		i++;
 	}
-	return(i);
+	return (i);
 }
 
 t_list	*ft_lstlast(t_list *lst)
 {
 	t_list	*tmp;
 
-	if(!lst)
+	if (!lst)
 		return (NULL);
 	tmp = lst;
-	while(tmp->next)
+	while (tmp->next)
 		tmp = tmp->next;
 	return (tmp);
 }
@@ -63,10 +68,11 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	t_list	*last;
 
 	if (!new)
-		return;
-	if (!*lst) {
+		return ;
+	if (!*lst)
+	{
 		*lst = new;
-		return;
+		return ;
 	}
 	last = *lst;
 	while (last->next)

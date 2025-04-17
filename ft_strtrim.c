@@ -6,18 +6,20 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 17:25:56 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/14 11:13:24 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/17 20:02:34 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+
+static int	set_cmp(const char c, const char *set);
+static char	*make_trim(const char *s, size_t start, size_t len);
+char		*ft_strtrim(const char *s1, const char *set);
 
 static int	set_cmp(const char c, const char *set)
 {
 	if (!set)
-		return(0);
-	
+		return (0);
 	while (*set)
 	{
 		if (c == *set)
@@ -42,13 +44,14 @@ static char	*make_trim(const char *s, size_t start, size_t len)
 
 char	*ft_strtrim(const char *s1, const char *set)
 {
-	int	i;
-	int	j;
+	size_t	len;
+	int		i;
+	int		j;
 
 	if (!s1 || !set)
 		return (NULL);
 	i = 0;
-	size_t len = ft_strlen(s1);
+	len = ft_strlen(s1);
 	if (len == 0)
 		return (ft_strdup(""));
 	j = len - 1;

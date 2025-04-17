@@ -6,12 +6,13 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 17:25:45 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/12 20:16:08 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/17 16:41:23 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+
+char	*ft_strjoin(const char *s1, const char *s2);
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {

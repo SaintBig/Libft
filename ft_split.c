@@ -6,13 +6,17 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 17:25:31 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/13 20:49:04 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/17 16:42:47 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <stdlib.h>
+
+static int	ft_wrdlen(char *str, char c);
+static int	count_words(const char *s, char c);
+static void	*ft_free(char **strs, int count);
+static char	*make_word(char *str, char c);
+char		**ft_split(const char *str, char c);
 
 static int	ft_wrdlen(char *str, char c)
 {
@@ -100,18 +104,3 @@ char	**ft_split(const char *str, char c)
 	}
 	return (ptrs);
 }
-
-/* int main(void)
-{
-	char str[] = "hello   wor ld good bye  ";
-	char **wrds;
-	int i = 0;
-
-	wrds = ft_split(str, ' ');
-	while (wrds[i])
-	{
-		printf("%s\n", wrds[i]);
-		i++;
-	}
-	ft_free(wrds, i);
-} */

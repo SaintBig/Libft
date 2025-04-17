@@ -6,11 +6,10 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 18:37:43 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/12 18:50:14 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/17 16:38:56 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);

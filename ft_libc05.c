@@ -6,11 +6,10 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 18:46:45 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/12 18:48:52 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/17 16:39:14 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 int		ft_atoi(const char *str);

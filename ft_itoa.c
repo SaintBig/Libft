@@ -6,13 +6,11 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 14:12:37 by jordanschil       #+#    #+#             */
-/*   Updated: 2025/04/14 11:35:43 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/17 19:27:55 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 static int	ft_intl(int n)
 {
@@ -60,18 +58,8 @@ char	*ft_itoa(int n)
 	}
 	while (len > i)
 	{
-		str[len - 1] = (n % 10) + '0';
-		len--;
+		str[(len--) - 1] = (n % 10) + '0';
 		n /= 10;
 	}
 	return (str);
 }
-
-/* int main(void)
-{
-	int n = -1234;
-	char *str;
-
-	str = ft_itoa(n);
-	printf("%s\n", str);
-} */

@@ -6,11 +6,16 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 20:27:51 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/14 12:32:43 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/17 16:43:36 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
+
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
 
 void	ft_putchar_fd(char c, int fd)
 {

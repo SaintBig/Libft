@@ -6,12 +6,11 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 18:43:55 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/14 10:55:24 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/17 16:39:05 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
