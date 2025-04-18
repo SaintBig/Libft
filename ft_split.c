@@ -6,19 +6,13 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 17:25:31 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/18 14:58:44 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/18 20:03:24 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_wrdlen(char *str, char c);
-static int	count_words(const char *s, char c);
-static void	*ft_free(char **strs, int count);
-static char	*make_word(char *str, char c);
-char		**ft_split(const char *str, char c);
-
-static int	ft_wrdlen(char *str, char c)
+static int	ft_wrdlen(const char *str, char c)
 {
 	int	i;
 
@@ -63,7 +57,7 @@ static void	*ft_free(char **strs, int count)
 	return (NULL);
 }
 
-static char	*make_word(char *str, char c)
+static char	*make_word(const char *str, char c)
 {
 	char	*ptr;
 	int		len;
@@ -85,7 +79,7 @@ char	**ft_split(const char *str, char c)
 	unsigned int	j;
 	unsigned int	wrds;
 
-	if (!str || !c)
+	if (!str)
 		return (NULL);
 	wrds = count_words(str, c);
 	ptrs = (char **)ft_calloc((wrds + 1), sizeof(char *));
@@ -98,8 +92,8 @@ char	**ft_split(const char *str, char c)
 		while (str[j] == c)
 			j++;
 		ptrs[i] = make_word((char *)&str[j], c);
-		if (!ptrs[i])
-			return (ft_free(ptrs, wrds));
+		if (!ptrs[i] && ft_wrdlen((char *)&str[j], c) > 0)
+			return (ft_free(ptrs, i));
 		while (str[j] && str[j] != c)
 			j++;
 		i++;
