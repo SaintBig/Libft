@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:16:09 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/18 10:34:01 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/18 17:39:09 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	*ft_memset(void *b, int c, size_t len)
 {
 	unsigned char	*tmp_ptr;
-	
+
 	if (!b && len > 0)
 		return (NULL);
 	tmp_ptr = (unsigned char *) b;

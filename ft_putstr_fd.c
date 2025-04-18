@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:40:10 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/18 10:35:28 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/18 17:39:33 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,5 @@ void	ft_putstr_fd(char *s, int fd)
 {
 	if (!s)
 		return ;
-	
 	write(fd, s, ft_strlen(s));
 }

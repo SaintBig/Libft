@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:22:07 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/18 10:15:55 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/18 17:38:46 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 // Copy memory area while avoiding overwriting issues
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char	*tmp_dst;
+	unsigned char		*tmp_dst;
 	const unsigned char	*tmp_src;
-	size_t			i;
+	size_t				i;
 
 	if ((!dst || !src) && len > 0)
 		return (NULL);
@@ -28,10 +28,12 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		while (len-- > 0)
 			tmp_dst[len] = tmp_src[len];
 	else
+	{
 		while (i < len)
 		{
 			tmp_dst[i] = tmp_src[i];
 			i++;
 		}
+	}
 	return (dst);
 }

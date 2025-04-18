@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 14:12:37 by jordanschil       #+#    #+#             */
-/*   Updated: 2025/04/18 09:10:51 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/18 17:47:44 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ static int	ft_intl(int n)
 	return (i);
 }
 
+static char	*handle_intmin(char *str)
+{
+	ft_memcpy(str, &"-2147483648", 11);
+	return (str);
+}
+
 char	*ft_itoa(int n)
 {
 	int		len;
@@ -42,13 +48,10 @@ char	*ft_itoa(int n)
 
 	len = ft_intl(n);
 	str = (char *)calloc(len + 1, sizeof(char));
-	if (!str)
+	if (!(str))
 		return (NULL);
 	if (n == -2147483648)
-	{
-		ft_memcpy(str, &"-2147483648", 11);
-		return (str);
-	}
+		return (handle_intmin(str));
 	i = 0;
 	if (n < 0)
 	{
