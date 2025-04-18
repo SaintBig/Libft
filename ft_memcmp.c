@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/12 17:25:45 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/18 13:46:02 by jleal            ###   ########.fr       */
+/*   Created: 2025/04/18 09:32:20 by jleal             #+#    #+#             */
+/*   Updated: 2025/04/18 10:02:57 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(const char *s1, const char *s2)
+//compare two strings of bytes
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char			*str;
-	unsigned int	l1;
-	unsigned int	l2;
+	unsigned char	*p1;
+	unsigned char	*p2;
+	size_t			i;
 
-	l1 = ft_strlen(s1);
-	l2 = ft_strlen(s2);
-	if (!l1 && !l2)
-		return (NULL);
-	str = (char *)ft_calloc(l1 + l2 + 1, sizeof(char));
-	if (!str)
-		return (NULL);
-	ft_memcpy(str, s1, l1);
-	ft_memcpy(str + l1, s2, l2);
-	return (str);
+	if (!s1 || !s2)
+	{
+		if (!s1 && !s2)
+			return (0);
+		if (!s1)
+			return (-1);
+		return (1);
+	}
+	if (n == 0)
+		return (0);
+	p1 = (unsigned char *) s1;
+	p2 = (unsigned char *) s2;
+	i = 0;
+	while (i < n)
+	{
+		if (p1[i] != p2[i])
+			return (p1[i] - p2[i]);
+		i++;
+	}
+	return (0);
 }

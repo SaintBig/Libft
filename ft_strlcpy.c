@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_libc03.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/12 17:25:45 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/18 13:46:02 by jleal            ###   ########.fr       */
+/*   Created: 2025/04/12 18:37:43 by jleal             #+#    #+#             */
+/*   Updated: 2025/04/18 09:28:25 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(const char *s1, const char *s2)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	char			*str;
-	unsigned int	l1;
-	unsigned int	l2;
+	size_t	src_len;
 
-	l1 = ft_strlen(s1);
-	l2 = ft_strlen(s2);
-	if (!l1 && !l2)
-		return (NULL);
-	str = (char *)ft_calloc(l1 + l2 + 1, sizeof(char));
-	if (!str)
-		return (NULL);
-	ft_memcpy(str, s1, l1);
-	ft_memcpy(str + l1, s2, l2);
-	return (str);
+	src_len = ft_strlen(src);
+	if (src_len + 1 < dstsize)
+		ft_memcpy(dst, src, src_len + 1);
+	else if (dstsize != 0)
+	{
+		ft_memcpy(dst, src, dstsize - 1);
+		dst[dstsize - 1] = 0;
+	}
+	return (src_len);
 }

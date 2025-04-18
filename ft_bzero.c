@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/12 17:25:45 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/18 13:46:02 by jleal            ###   ########.fr       */
+/*   Created: 2025/04/18 09:17:43 by jleal             #+#    #+#             */
+/*   Updated: 2025/04/18 10:33:32 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(const char *s1, const char *s2)
+// Fill a byte string with zero
+void	ft_bzero(void *s, size_t n)
 {
-	char			*str;
-	unsigned int	l1;
-	unsigned int	l2;
+	unsigned char	*tmp_ptr;
 
-	l1 = ft_strlen(s1);
-	l2 = ft_strlen(s2);
-	if (!l1 && !l2)
-		return (NULL);
-	str = (char *)ft_calloc(l1 + l2 + 1, sizeof(char));
-	if (!str)
-		return (NULL);
-	ft_memcpy(str, s1, l1);
-	ft_memcpy(str + l1, s2, l2);
-	return (str);
+	if (!s)
+		return ;
+	tmp_ptr = (unsigned char *) s;
+	while (n > 0)
+	{
+		*(tmp_ptr++) = 0;
+		n--;
+	}
 }

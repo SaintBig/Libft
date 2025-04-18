@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 17:25:31 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/17 16:42:47 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/18 14:58:44 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ char	**ft_split(const char *str, char c)
 	unsigned int	j;
 	unsigned int	wrds;
 
+	if (!str || !c)
+		return (NULL);
 	wrds = count_words(str, c);
 	ptrs = (char **)ft_calloc((wrds + 1), sizeof(char *));
 	if (!ptrs)

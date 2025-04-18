@@ -1,20 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_libc05.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 18:46:45 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/17 16:39:14 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/18 09:43:56 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-int		ft_atoi(const char *str);
-void	*ft_calloc(size_t count, size_t size);
-char	*ft_strdup(const char *s1);
 
 static int	ft_isspace(char c)
 {
@@ -29,6 +25,8 @@ int	ft_atoi(const char *str)
 	int	p;
 	int	i;
 
+	if(!str)
+		return (0);
 	tot = 0;
 	p = 1;
 	i = 0;
@@ -47,36 +45,4 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (tot * p);
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	unsigned char	*ptr;
-	size_t			i;
-
-	i = 0;
-	ptr = malloc(count * size);
-	if (!ptr)
-		return (NULL);
-	while (i < count * size)
-		ptr[i++] = 0;
-	return (ptr);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	char	*dup;
-	int		i;
-
-	dup = (char *)malloc(ft_strlen(s1) + 1);
-	if (!dup)
-		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		dup[i] = s1[i];
-		i++;
-	}
-	dup[i] = 0;
-	return (dup);
 }
