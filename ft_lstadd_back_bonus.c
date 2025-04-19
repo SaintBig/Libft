@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/12 18:37:43 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/19 20:41:37 by jleal            ###   ########.fr       */
+/*   Created: 2025/04/19 20:48:06 by jleal             #+#    #+#             */
+/*   Updated: 2025/04/19 20:48:28 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	size_t	src_len;
+	t_list	*last;
 
-	src_len = ft_strlen(src);
-	if (src_len + 1 < dstsize)
-		ft_memcpy(dst, src, src_len + 1);
-	else if (dstsize != 0)
+	if (!new)
+		return ;
+	if (!*lst)
 	{
-		ft_memcpy(dst, src, dstsize - 1);
-		dst[dstsize - 1] = 0;
+		*lst = new;
+		return ;
 	}
-	return (src_len);
+	last = *lst;
+	while (last->next)
+		last = last->next;
+	last->next = new;
 }

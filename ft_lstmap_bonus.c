@@ -1,53 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bonus02.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 09:34:14 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/18 20:38:52 by jleal            ###   ########.fr       */
+/*   Created: 2025/04/19 20:51:10 by jleal             #+#    #+#             */
+/*   Updated: 2025/04/19 20:51:19 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
-{
-	if (!del)
-		return ;
-	if (lst)
-	{
-		del(lst->content);
-		free(lst);
-	}
-}
-
-void	ft_lstclear(t_list **lst, void (*del)(void*))
-{
-	t_list	*tmp;
-
-	if (!del || !lst || !*lst)
-		return ;
-	while (*lst && lst)
-	{
-		tmp = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = tmp;
-	}
-}
-
-void	ft_lstiter(t_list *lst, void (*f)(void*))
-{
-	t_list	*tmp;
-
-	tmp = lst;
-	while (tmp)
-	{
-		f(tmp->content);
-		tmp = tmp->next;
-	}
-}
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void*))
 {

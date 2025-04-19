@@ -6,23 +6,35 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 17:33:40 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/17 16:34:55 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/19 21:14:49 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+// Headers for testing
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <fcntl.h>
+
+// Colors for printf
+#define RED     "\033[1;31m"
+#define GREEN   "\033[1;32m"
+#define YELLOW  "\033[1;33m"
+#define BLUE    "\033[1;34m"
+#define RESET   "\033[0m"
+
 # include <stdlib.h>
 # include <unistd.h>
-
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }					t_list;
 
-// libc01.c
 int		ft_isalpha(int c);
 
 int		ft_isdigit(int c);
@@ -33,7 +45,6 @@ int		ft_isascii(int c);
 
 int		ft_isprint(int c);
 
-// libc02.c
 size_t	ft_strlen(const char *str);
 
 void	*ft_memset(void *b, int c, size_t len);
@@ -44,7 +55,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 
 void	*ft_memmove(void *dst, const void *src, size_t len);
 
-// libc03.c
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
@@ -55,7 +65,6 @@ char	ft_tolower(char c);
 
 char	*ft_strchr(const char *s, int c);
 
-// libc04.c
 char	*ft_strrchr(const char *s, int c);
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -66,7 +75,6 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 
-// libc05.c
 int		ft_atoi(const char *str);
 
 void	*ft_calloc(size_t count, size_t size);
@@ -97,7 +105,6 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
 // Bonus functions
-// ft_bonus01.c
 t_list	*ft_lstnew(void *content);
 
 void	ft_lstadd_front(t_list **lst, t_list *new);
@@ -108,7 +115,6 @@ t_list	*ft_lstlast(t_list *lst);
 
 void	ft_lstadd_back(t_list **lst, t_list *new);
 
-// ft_bonus02.c
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 
 void	ft_lstclear(t_list **lst, void (*del)(void*));
