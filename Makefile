@@ -13,7 +13,7 @@ SRCS        = ft_isprint.c ft_putstr_fd.c ft_strncmp.c ft_atoi.c ft_itoa.c ft_sp
 				ft_strtrim.c ft_isalpha.c ft_putchar_fd.c ft_strlcpy.c ft_isascii.c\
 				ft_putednl_fd.c ft_strlen.c ft_isdigit.c ft_putnbr_fd.c  ft_strmapi.c
 
-BONUS_SRCS  = ft_bonus01.c ft_bonus02.c
+BONUS_SRCS  = ft_bonus01.c ft_bonus02.c	
 
 # Object files
 OBJS        = $(SRCS:.c=.o)

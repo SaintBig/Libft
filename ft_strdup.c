@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:36:21 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/18 10:53:47 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/19 20:28:26 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strdup(const char *s1)
 
 	if (!s1)
 		return (NULL);
-	dup = (char *)calloc(ft_strlen(s1) + 1, sizeof(char));
+	dup = (char *)ft_calloc(ft_strlen(s1) + 1, sizeof(char));
 	if (!dup)
 		return (NULL);
 	i = 0;

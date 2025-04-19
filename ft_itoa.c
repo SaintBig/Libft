@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 14:12:37 by jordanschil       #+#    #+#             */
-/*   Updated: 2025/04/18 17:47:44 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/19 20:28:21 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_itoa(int n)
 	int		i;
 
 	len = ft_intl(n);
-	str = (char *)calloc(len + 1, sizeof(char));
+	str = (char *)ft_calloc(len + 1, sizeof(char));
 	if (!(str))
 		return (NULL);
 	if (n == -2147483648)
