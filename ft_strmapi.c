@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 19:55:33 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/20 14:12:20 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/20 16:50:39 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ static void test_ft_strmapi(void)
         }
         else
         {
-            printf(RED "FAIL: got \"%s\", expected \"%s\"\n" RESET, result ? result : "NULL", test_cases[i].expected);
+            printf(RED "FAIL: got \"%s\", expected \"%s\"\n"
+                    RESET, result ? result : "NULL", test_cases[i].expected);
         }
 
         free(result); // Free allocated memory

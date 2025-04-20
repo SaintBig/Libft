@@ -6,15 +6,15 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:30:12 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/20 14:25:26 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/20 16:52:24 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t i;
+	size_t	i;
 
 	if (!s1 || !s2)
 	{
@@ -46,11 +46,13 @@ int ft_strncmp(const char *s1, const char *s2, size_t n)
 	int res1 = ft_strncmp(s1, s2, n);
 	int res2 = strncmp(s1, s2, n);
 
-	if ((res1 < 0 && res2 < 0) || (res1 > 0 && res2 > 0) || (res1 == 0 && res2 == 0)) {
+	if ((res1 < 0 && res2 < 0)
+		|| (res1 > 0 && res2 > 0)
+		|| (res1 == 0 && res2 == 0)) {
 		printf(GREEN "ft_strncmp: OK!\n" RESET);
 	} else {
-		printf(RED "FAIL: ft_strncmp(\"%s\", \"%s\", %zu) = %d, expected %d\n" RESET,
-			   s1, s2, n, res1, res2);
+		printf(RED "FAIL: ft_strncmp(\"%s\", \"%s\", %zu) = %d, expected %d\n"
+				RESET, s1, s2, n, res1, res2);
 	}
 }
 

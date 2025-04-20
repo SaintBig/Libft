@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 20:46:02 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/20 12:54:52 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/20 18:13:11 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	t_list			*tmp;
-	unsigned int	i;
+	size_t	i;
 
-	tmp = lst;
 	i = 0;
-	while (tmp)
+	while (lst)
 	{
-		tmp = tmp->next;
+		lst = lst->next;
 		i++;
 	}
 	return (i);

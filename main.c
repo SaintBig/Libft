@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdint.h>
 
 // Colors for printf
 #define RED     "\033[1;31m"
