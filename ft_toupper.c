@@ -6,13 +6,13 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:24:55 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/20 16:30:25 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/23 15:22:37 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	ft_toupper(char c)
+int	ft_toupper(int c)
 {
 	if (c >= 'a' && c <= 'z')
 		c = c - 32;

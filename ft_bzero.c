@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:17:43 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/20 16:33:36 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/23 15:13:09 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*tmp_ptr;
 
-	if (!s)
-		return ;
 	tmp_ptr = (unsigned char *)s;
 	while (n > 0)
 	{

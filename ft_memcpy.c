@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:18:41 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/20 16:31:24 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/23 15:56:26 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	unsigned char	*tmp_src;
 	unsigned char	*tmp_dst;
 
-	if (!dst && !src)
-		return (dst);
 	tmp_src = (unsigned char *)src;
 	tmp_dst = (unsigned char *)dst;
 	while (n)

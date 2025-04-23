@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:22:07 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/20 16:40:17 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/23 15:57:04 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	const unsigned char	*tmp_src;
 	size_t				i;
 
-	if ((!dst || !src) && len > 0)
-		return (NULL);
 	tmp_dst = (unsigned char *)dst;
 	tmp_src = (const unsigned char *)src;
 	i = 0;
@@ -72,6 +70,23 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		printf("  memmove result:    %s\n", str4);
 		return;
 	}
+
+	// Test with NULL
+	char str5[20] = "123456789";
+	char str6[20] = "123456789";
+	void *zero = NULL;
+
+	ft_memmove(zero, zero, len);
+	//memmove(zero, zero, len);
+
+	if (memcmp(str5, str6, 20) != 0) {
+		printf(RED "FAIL: ft_memmove() did not match memmove() (NULL)\n"
+				RESET);
+		printf("  ft_memmove result: %s\n", str5);
+		printf("  memmove result:    %s\n", str6);
+		return;
+	}
+	
 
 	printf(GREEN "ft_memmove: OK!\n" RESET);
 }

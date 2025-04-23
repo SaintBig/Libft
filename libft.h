@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 17:33:40 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/20 16:44:38 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/23 15:57:18 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 
-char	ft_toupper(char c);
+int		ft_toupper(int c);
 
-char	ft_tolower(char c);
+int		ft_tolower(int c);
 
 char	*ft_strchr(const char *s, int c);
 

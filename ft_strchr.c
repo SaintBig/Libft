@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:28:35 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/20 16:46:55 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/23 15:15:23 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ char	*ft_strchr(const char *s, int c)
 	char			a;
 	unsigned int	i;
 
-	if (!s)
-		return (NULL);
 	a = (char)c;
 	i = 0;
 	while (s[i])

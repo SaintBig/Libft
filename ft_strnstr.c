@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:33:28 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/20 18:52:54 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/23 15:15:51 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	needlelen;
 
-	if (!haystack || !needle)
-		return (NULL);
 	if (!needle[0])
 		return ((char *)haystack);
 	needlelen = ft_strlen(needle);
