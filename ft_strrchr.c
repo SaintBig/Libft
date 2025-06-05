@@ -6,17 +6,17 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 18:43:55 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/20 14:25:26 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/20 16:22:34 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
-	char a;
-	char *ptr;
-	unsigned int i;
+	char			a;
+	char			*ptr;
+	unsigned int	i;
 
 	a = (char)c;
 	ptr = NULL;

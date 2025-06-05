@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:31:40 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/20 12:56:55 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/23 15:12:43 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	unsigned char	*ptr;
 	unsigned char	a;
 
-	if (!s || n == 0)
-		return (NULL);
 	ptr = (unsigned char *) s;
 	a = (unsigned char) c;
 	while (n-- > 0)

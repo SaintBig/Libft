@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_putednl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/18 09:03:11 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/20 16:36:47 by jleal            ###   ########.fr       */
+/*   Created: 2025/04/18 09:40:49 by jleal             #+#    #+#             */
+/*   Updated: 2025/04/20 16:45:21 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+void	ft_putendl_fd(char *s, int fd)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	while (*s)
+		write(fd, s++, 1);
+	write(fd, "\n", 1);
 }
 
 // TESTING AREA//
-/* static void test_ft_isascii(void) {
-	printf(YELLOW "\nTESTING ft_isascii()\n" RESET);
-	for (int c = -1; c <= 255; c++) {
-		if ((ft_isascii(c) != 0) != (isascii(c) != 0)) {
-			printf(RED "FAIL: ft_isascii(%d) = %d, expected %s\n" RESET,
-				   c, ft_isascii(c), (isascii(c) ? "non-zero" : "zero"));
-			return;
-		}
-	}
-	printf(GREEN "ft_isprint: OK!\n" RESET);
+/* static void test_ft_putendl_fd(void) {
+	printf(YELLOW "\nTESTING ft_putendl_fd():" RESET);
+	printf(BLUE "\n" RESET);
+
+	ft_putendl_fd("Hello World!", 1);
+	printf(BLUE "" RESET);
+	ft_putendl_fd("Hello World!", 2);
+
+	printf("\n");
 }
 
 int main(void)
 {
-	test_ft_isascii();
+	test_ft_putendl_fd();
 } */

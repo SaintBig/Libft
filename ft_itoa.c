@@ -6,7 +6,7 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 14:12:37 by jordanschil       #+#    #+#             */
-/*   Updated: 2025/04/20 14:24:07 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/20 16:37:32 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ char	*ft_itoa(int n)
         }
         else
         {
-            printf(RED "FAIL: got \"%s\", expected \"%s\"\n" RESET, result ? result : "NULL", test_cases[i].expected);
+            printf(RED "FAIL: got \"%s\", expected \"%s\"\n" RESET,
+					result ? result : "NULL", test_cases[i].expected);
         }
 
         free(result); // Free allocated memory

@@ -6,19 +6,17 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:36:21 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/20 14:25:26 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/23 15:14:23 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
-	char *dup;
-	int i;
+	char	*dup;
+	int		i;
 
-	if (!s1)
-		return (NULL);
 	dup = (char *)ft_calloc(ft_strlen(s1) + 1, sizeof(char));
 	if (!dup)
 		return (NULL);
@@ -38,7 +36,8 @@ char *ft_strdup(const char *s1)
 	char *dup = strdup(str);
 	char *ft_dup = ft_strdup(str);
 	if (strcmp(dup, ft_dup) != 0) {
-		printf(RED "FAIL: ft_strdup(\"%s\") = \"%s\", expected \"%s\"\n" RESET, str, ft_dup, dup);
+		printf(RED "FAIL: ft_strdup(\"%s\") = \"%s\", expected \"%s\"\n" RESET,
+				str, ft_dup, dup);
 		free(dup);
 		free(ft_dup);
 		return;

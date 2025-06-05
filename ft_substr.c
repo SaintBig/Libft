@@ -6,16 +6,16 @@
 /*   By: jleal <jleal@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 17:26:05 by jleal             #+#    #+#             */
-/*   Updated: 2025/04/20 14:25:26 by jleal            ###   ########.fr       */
+/*   Updated: 2025/04/29 15:06:42 by jleal            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char *subs;
-	size_t i;
+	char	*subs;
+	size_t	i;
 
 	if (!s)
 		return (NULL);
@@ -41,7 +41,8 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
 	char *str = "Hello, 42!";
 	char *sub = ft_substr(str, 7, 2);
 	if (strcmp(sub, "42") != 0) {
-		printf(RED "FAIL: ft_substr(\"%s\", 7, 2) = \"%s\", expected \"42\"\n" RESET, str, sub);
+		printf(RED "FAIL: ft_substr(\"%s\", 7, 2) = \"%s\"
+				, expected \"42\"\n" RESET, str, sub);
 		free(sub);
 		return;
 	}
